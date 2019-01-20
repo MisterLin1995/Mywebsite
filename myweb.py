@@ -32,7 +32,7 @@ def create_app():
 	app = Flask(__name__)
 	Bootstrap(app)
 	return app
-app=create_app()
+
 
 @app.route('/index')
 def cover():
@@ -44,7 +44,7 @@ def index():
 
 @app.route('/blog')
 def blog():
-	engine = create_engine('mysql+pymysql://mrlin:Zhang-01234@127.0.0.1/web?charset=utf8',encoding = 'utf-8' )
+	engine = create_engine('mysql+pymysql://username:password@127.0.0.1/databasename?charset=utf8',encoding = 'utf-8' )
 	mysqlconn = engine.connect()
 	posts = pd.read_sql("select post_id,title,subtitle,postDate from post limit 0,4",con=mysqlconn)
 	mysqlconn.close()
@@ -54,7 +54,7 @@ def blog():
 
 @app.route('/post/<int:post_id>')
 def post(post_id):
-	engine = create_engine('mysql+pymysql://mrlin:Zhang-01234@127.0.0.1/web?charset=utf8',encoding = 'utf-8' )
+	engine = create_engine('mysql+pymysql://username:password@127.0.0.1/databasename?charset=utf8',encoding = 'utf-8' )
 	mysqlconn = engine.connect()
 	post = pd.read_sql("select * from post where post_id={0}".format(post_id),con=mysqlconn)
 	post['postDate']=post['postDate'].apply(lambda x:datetime.datetime.strftime(x,format('%Y-%m-%d')))
@@ -63,7 +63,7 @@ def post(post_id):
 
 @app.route('/album')
 def album():
-	engine = create_engine('mysql+pymysql://mrlin:Zhang-01234@127.0.0.1/web?charset=utf8',encoding = 'utf-8' )
+	engine = create_engine('mysql+pymysql://username:password@127.0.0.1/databasename?charset=utf8',encoding = 'utf-8' )
 	mysqlconn = engine.connect()
 	photoInfo = pd.read_sql("select * from photoInfo;",con=mysqlconn)
 	mysqlconn.close()
@@ -77,4 +77,6 @@ def code():
 	return redirect("https://code.mrlin.website",code=302)	
 
 if __name__ == "__main__":
+    app=create_app()
     app.run(host='0.0.0.0')
+    
