@@ -20,7 +20,7 @@ def imgInfo(filename):
     try:
         latitude = positioncal(str(rawInfo['GPS GPSLatitude']), str(rawInfo['GPS GPSLatitudeRef']))
         longitude = positioncal(str(rawInfo['GPS GPSLongitude']), str(rawInfo['GPS GPSLongitudeRef']))
-        locationResponse = requests.get("https://maps.googleapis.com/maps/api/geocode/json?latlng={0},{1}&key=AIzaSyCPUZdupskWClYp93VXVl0NDlfOkgokZf4".format(latitude,longitude))
+        locationResponse = requests.get("https://maps.googleapis.com/maps/api/geocode/json?latlng={0},{1}&key=YourGoogleMapApi".format(latitude,longitude))
         location = locationResponse.json()['results'][2]['formatted_address']
     except:
         latitude = ''
@@ -54,7 +54,7 @@ if __name__ == '__main__':
             photoInfo.loc[count]=[fileroute]+imgInfo(fileroute)+[file]
             count+=1
     
-    engine = create_engine('mysql+pymysql://mrlin:Zhang-01234@127.0.0.1/web?charset=utf8',encoding = 'utf-8')
+    engine = create_engine('mysql+pymysql://username:password@127.0.0.1/databasename?charset=utf8',encoding = 'utf-8')
     mysqlconn = engine.connect()
     try:
         photoInfo.to_sql('photoInfo',con=mysqlconn,if_exists='replace')
