@@ -32,7 +32,7 @@ def create_app():
 	app = Flask(__name__)
 	Bootstrap(app)
 	return app
-
+app=create_app()
 
 @app.route('/index')
 def cover():
@@ -77,6 +77,5 @@ def code():
 	return redirect("https://code.mrlin.website",code=302)	
 
 if __name__ == "__main__":
-    app=create_app()
     app.run(host='0.0.0.0')
     
