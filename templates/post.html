@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{ post['title'] }}</title>
+
+ <!-- Bootstrap core CSS -->
+ <link href="{{url_for('static', filename = 'css/bootstrap.min.css', _external=True)}}" rel="stylesheet">
+
+ <!-- Custom fonts for this template -->
+ <link href="{{url_for('static', filename = 'css/all.min.css', _external=True)}}" rel="stylesheet" type="text/css">
+ <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+ <!-- Custom styles for this template -->
+ <link href="{{url_for('static', filename = 'css/clean-blog.min.css', _external=True)}}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="#">Marcus</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link" href="/index">Home</a>
+          <a class="nav-item nav-link" href="/blog">Blog</a>
+          <a class="nav-item nav-link active" href="#">Album<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/code">Code</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('/static/geekbanner1.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{ post['title'] }}</h1>
+              <h2 class="subheading">{{ post['subtitle'] }}</h2>
+              <span class="meta">Posted by
+                <a href="#">Marcus</a>
+                on {{ post['postDate'] }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+	    <p class="content">{{ post['content']|safe }}</p>
+	  </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+
+   <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="https://github.com/MisterLin1995" target="_blank">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/mrlin1995/" target="_blank">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; mrlin.website 2019</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{{url_for('static', filename = 'js/jquery.min.js', _external=True)}}"></script>
+    <script src="{{url_for('static', filename = 'js/bootstrap.bundle.min.js', _external=True)}}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{{url_for('static', filename = 'js/clean-blog.min.js', _external=True)}}"></script>
+
+  </body>
+
+</html>

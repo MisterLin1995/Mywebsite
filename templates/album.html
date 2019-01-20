@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+      <link href="{{url_for('static', filename = 'css/bootstrap.min.css', _external=True)}}" rel="stylesheet">
+      <link href="{{url_for('static', filename = 'css/album.css', _external=True)}}" rel="stylesheet">
+      <script src="{{url_for('static', filename = 'js/jquery-slim.min.js', _external=True)}}"></script>
+      <script src="{{url_for('static', filename = 'js/popper.min.js', _external=True)}}"></script>
+      <script src="{{url_for('static', filename = 'js/bootstrap.min.js', _external=True)}}"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">Marcus</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
+          <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/index">Home</a>
+            <a class="nav-item nav-link" href="/blog">Blog</a>
+            <a class="nav-item nav-link active" href="#">Album<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/code">Code</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Experiencing Life</h1>
+          <p class="lead text-muted">Places I've visited<br />&<br />People I've Met</p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            {% for pic in pics %}
+              {% if pic['length'] > pic['width'] %}
+                <div class="col-md-6">
+              {% else %}
+                <div class="col-md-12">
+              {% endif %}
+                  <div class="card mb-4 shadow-sm">
+                    <!---->
+                    <img src= "{{ pic['fileroute'] }}" width="100%">
+                    <div class="card-body">
+		      <p class="card-text">{{ pic['description'] }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+			<div class="btn-group">
+			  <small class="text-muted">{{ pic['location'] }}</small> 
+			</div>
+                        <small class="text-muted">{{ pic['takenTime'] }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
